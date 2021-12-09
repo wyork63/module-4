@@ -212,7 +212,7 @@ var taskStatusChangeHandler = function(event) {
   else if (statusValue === "completed") {
     tasksCompletedEl.appendChild(taskSelected);
   }
-  console.log(event.target.getAttribute("data-task-id"));
+  
 
   // update tasks in tasks array
   for (var i = 0; i < tasks.length; i++) {
@@ -227,6 +227,35 @@ var taskStatusChangeHandler = function(event) {
 var saveTasks = function() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+// use loadtasks to accomplish the following 
+// Gets task items from localStorage.
+
+// Converts tasks from the string format back into an array of objects.
+
+// Iterates through a tasks array and creates task elements on the page from it.
+
+
+var loadTasks = function () {
+// first line of code should reassign the tasks variable to whatever localStorage returns 
+  var savedTasks = localStorage.getItem("tasks")
+  console.log(savedTasks);
+
+
+if (savedTasks) {
+  return false;
+}
+  
+
+tasks = JSON.parse(tasks); 
+
+loadTasks();
+
+
+
+
+}
+
 
 formEl.addEventListener("submit", taskFormHandler);
 
