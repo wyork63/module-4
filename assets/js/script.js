@@ -4,6 +4,8 @@ var taskIdCounter = 0;
 var pageContentEl = document.querySelector("#page-content");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
 var tasksCompletedEl = document.querySelector("#tasks-completed");
+
+// array to hold tasks
 var tasks =[];
 
 
@@ -241,20 +243,19 @@ var loadTasks = function () {
   var savedTasks = localStorage.getItem("tasks")
   console.log(savedTasks);
 
-
-if (savedTasks) {
+if (!tasks) {
   return false;
 }
+
+savedTasks = JSON.parse(savedTasks); 
+  console.log(savedTasks)
+
+for (var i = 0; i < savedTasks.length; i++) {
+  createTaskEl(savedTasks[i]);
   
-
-tasks = JSON.parse(tasks); 
-
-loadTasks();
-
-
-
-
 }
+
+};
 
 
 formEl.addEventListener("submit", taskFormHandler);
@@ -263,3 +264,4 @@ pageContentEl.addEventListener("click", taskButtonHandler);
 
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
 
+loadTasks();
